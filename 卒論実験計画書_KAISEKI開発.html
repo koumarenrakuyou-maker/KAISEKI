@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>卒論実験計画書：KAISEKI日本語言語解析システムの開発と構成概念妥当性の検証</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans JP', sans-serif; font-size: 10.5pt; line-height: 1.8; color: #1a1a2e; max-width: 210mm; margin: 0 auto; padding: 15mm 20mm; background: #fff; }
+@media print {
+  body { padding: 10mm 15mm; }
+  .page-break { page-break-before: always; }
+  h2 { page-break-after: avoid; }
+}
+h1 { font-size: 16pt; text-align: center; margin: 0 0 8mm; padding-bottom: 4mm; border-bottom: 3px double #16213e; color: #16213e; font-weight: 700; }
+h2 { font-size: 13pt; color: #0f3460; margin: 8mm 0 4mm; padding: 2mm 0 2mm 4mm; border-left: 4px solid #0f3460; font-weight: 700; }
+h3 { font-size: 11pt; color: #1a1a2e; margin: 5mm 0 2mm; font-weight: 500; }
+h4 { font-size: 10.5pt; color: #533483; margin: 4mm 0 2mm; font-weight: 500; }
+p { margin: 2mm 0; text-align: justify; }
+table { width: 100%; border-collapse: collapse; margin: 3mm 0 5mm; font-size: 9.5pt; }
+th { background: #0f3460; color: #fff; padding: 2mm 3mm; text-align: left; font-weight: 500; }
+td { padding: 2mm 3mm; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #f8f9fa; }
+blockquote { margin: 3mm 0; padding: 2mm 4mm; border-left: 3px solid #e94560; background: #fef9f9; font-size: 9.5pt; }
+pre { background: #1a1a2e; color: #e8e8e8; padding: 4mm; border-radius: 2mm; font-size: 9pt; line-height: 1.5; overflow-x: auto; white-space: pre; margin: 3mm 0; }
+.note { background: #e8f4f8; border-left: 4px solid #0f3460; padding: 3mm 4mm; margin: 3mm 0; font-size: 9.5pt; }
+.tip { background: #e8f8e8; border-left: 4px solid #2ecc71; padding: 3mm 4mm; margin: 3mm 0; font-size: 9.5pt; }
+.important { background: #fef3e8; border-left: 4px solid #e67e22; padding: 3mm 4mm; margin: 3mm 0; font-size: 9.5pt; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+ul, ol { margin: 2mm 0 2mm 6mm; }
+li { margin: 1mm 0; }
+.ref { font-size: 9pt; margin: 1mm 0; padding-left: 5mm; text-indent: -5mm; }
+.header-meta { text-align: center; color: #666; font-size: 9pt; margin-bottom: 5mm; }
+</style>
+</head>
+<body>
+
+<h1>卒論実験計画書<br>KAISEKI日本語言語解析システムの開発と構成概念妥当性の検証</h1>
+
+<hr>
+
+<h2>1. 基本情報</h2>
+<table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td><b>研究題目</b></td><td>LIWC相当以上の日本語言語解析システム（KAISEKI）の開発と構成概念妥当性の検証</td></tr>
+<tr><td><b>作成者</b></td><td>〔氏名／学籍番号〕</td></tr>
+<tr><td><b>所属</b></td><td>〔学部・学科／ゼミ〕</td></tr>
+</table>
+
+<hr>
+
+<h2>要約</h2>
+<h3>この研究を簡単に言うと</h3>
+<p>人が書いた文章を自動的に分析して、「この人は今どんな気持ちで書いているか」「どれくらい深く考えて書いているか」などを数値で示すコンピュータシステム（KAISEKI）を作る研究である。すでにアメリカにはLIWCという有名な分析ツールがあり、日本語版（J-LIWC）も存在するが、文章の「文脈」や「皮肉」を読み取れないなどの限界がある。KAISEKIは最新のAI技術を使って、こうした限界を超えることを目指す。</p>
+<p>作ったシステムが本当に正しく動くかを確認するために、参加者に文章を書いてもらい、同時に心理テスト（質問紙）と体の反応（心拍・汗）も測定する。「システムが『この人は不安だ』と判定した」→「実際に質問紙でも不安が高かった」→「体も緊張していた」という3つが一致すれば、システムが正しく機能している証拠になる。</p>
+
+<h3>KAISEKIシステムとは何か</h3>
+<p><b>LIWCの仕組み（従来型）</b>：「辞書」を持っていて、文章の中の単語を1つずつ辞書で調べて分類し、数を数える。翻訳アプリで単語を1つずつ引くようなもの。</p>
+<p><b>問題点</b>：「やばい」は嬉しい時も怖い時も使う。辞書型では「やばい＝ネガティブ」と決め打ちするしかなく、文脈で意味が変わることに対応できない。</p>
+<p><b>KAISEKIの仕組み（新型）</b>：最新のAI（大規模言語モデル＝LLM）を内部に搭載し、文章全体を読んで文脈を理解した上で、各カテゴリのスコアを算出する。</p>
+
+<pre>
+┌──────────────────────────────────────────────────┐
+│          従来型（LIWC / J-LIWC）                  │
+│  入力テキスト → 単語に分割 → 辞書で照合 → 集計   │
+│  「今日はやばい経験をした」                       │
+│   → 「やばい」= ネガティブ語 → ネガティブ +1      │
+│   ※ 文脈を無視。嬉しい意味でも常にネガティブ扱い │
+└──────────────────────────────────────────────────┘
+
+         ↓ KAISEKIはここが違う ↓
+
+┌──────────────────────────────────────────────────┐
+│          新型（KAISEKI）                          │
+│  入力テキスト → AI（LLM）が文脈を読む → 判定     │
+│  「今日はやばい経験をした。最高だった！」         │
+│   → 文脈から「やばい」= ポジティブと判断          │
+│   → ポジティブ +1                                │
+│   ※ 前後の文を読んで意味を判断する               │
+└──────────────────────────────────────────────────┘
+</pre>
+
+<p><b>KAISEKIの多層的な分析：</b></p>
+<pre>
+┌──────────────────────────────────────────┐
+│       KAISEKIの分析レイヤー               │
+│                                           │
+│ レイヤー1：語彙分析（LIWCと同等）         │
+│   → 感情語、認知語、社会語のカウント      │
+│                                           │
+│ レイヤー2：文脈・意味分析（独自）         │
+│   → 文脈を考慮した感情極性判定            │
+│   → 皮肉・比喩の検出                     │
+│                                           │
+│ レイヤー3：構造分析（独自）               │
+│   → 語彙多様性（MTLD）                   │
+│   → 構文複雑性（係り受け深さ）           │
+│                                           │
+│ レイヤー4：意味空間分析（独自）           │
+│   → 単語・文の意味ベクトル分析            │
+│   → テキスト間の意味的類似度算出          │
+└──────────────────────────────────────────┘
+</pre>
+
+<hr>
+<div class="page-break"></div>
+
+<h2>2. 背景・目的（先行研究）</h2>
+
+<h3>背景</h3>
+<p>言語は人間の認知・感情・社会的行動を反映する窓口である。Pennebaker（2011）は、人が使う単語のパターンが書き手の心理状態、パーソナリティ、社会的関係を予測することを示した。この知見を基盤として開発されたLIWC（Linguistic Inquiry and Word Count）は、テキスト中の単語を約100のカテゴリに分類し、各カテゴリの出現割合を算出するソフトウェアであり、心理学における言語解析のゴールドスタンダードとして20,000以上の学術論文で使用されてきた（Pennebaker, Boyd, Jordan, &amp; Blackburn, 2015）。</p>
+
+<p>しかし、LIWCには根本的な制約がある。LIWCは辞書ベースの単語カウント法であり、文脈、比喩、皮肉といった高次の言語現象を捉えることができない。この限界は開発者自身も認めている（Tausczik &amp; Pennebaker, 2010）。日本語版LIWCであるJ-LIWC2015は、五十嵐・奥田・笹原（2022）により開発されたが、辞書ベースの制約を共有している。</p>
+
+<p>近年の大規模言語モデル（LLM）の発展により、辞書に依存せず文脈を理解した言語解析が技術的に可能になった。本研究では、LLMの文脈理解能力を活用しつつ、LIWCの「解釈可能なカテゴリスコア」という長所を継承した新しい日本語言語解析システム（KAISEKI）を開発し、その構成概念妥当性を実験的に検証する。</p>
+
+<h3>先行研究の要点</h3>
+
+<h4>先行研究A：Pennebaker &amp; King（1999）── LIWCの構成概念妥当性</h4>
+<p>2,479名の心理学専攻学生に20分間の自由筆記を行わせ、LIWCで解析した言語特徴とBig Five性格特性との相関を検討。神経症傾向の高い者はネガティブ感情語を多く使用し、外向性の高い者はポジティブ感情語と社会的語彙を多く使用した。</p>
+<blockquote>Pennebaker, J. W., &amp; King, L. A. (1999). Linguistic styles: Language use as an individual difference. <em>Journal of Personality and Social Psychology</em>, 77(6), 1296–1312. https://doi.org/10.1037/0022-3514.77.6.1296</blockquote>
+
+<h4>先行研究B：五十嵐・奥田・笹原（2022）── J-LIWC2015の開発</h4>
+<p>LIWC2015辞書を日本語に翻訳・拡張し、内的整合性、意味的等価性、構成概念妥当性を検証。辞書ベースの限界（文脈非依存、新語非対応）は解消されていない。</p>
+<blockquote>Igarashi, T., Okuda, S., &amp; Sasahara, K. (2022). Development of the Japanese version of the LIWC dictionary 2015. <em>Frontiers in Psychology</em>, 13, 841534. https://doi.org/10.3389/fpsyg.2022.841534</blockquote>
+
+<h4>先行研究C：Tausczik &amp; Pennebaker（2010）── LIWCカテゴリの心理的意味</h4>
+<p>LIWCの各カテゴリが心理学的に何を測定しているかを体系的にレビュー。同時にLIWCの限界として文脈解析の不在を指摘。</p>
+<blockquote>Tausczik, Y. R., &amp; Pennebaker, J. W. (2010). The psychological meaning of words. <em>Journal of Language and Social Psychology</em>, 29(1), 24–54. https://doi.org/10.1177/0261927X09351676</blockquote>
+
+<h4>先行研究D：Pennebaker, Mayne, &amp; Francis（1997）── 筆記開示と言語変化</h4>
+<p>筆記開示実験6研究を再分析し、因果語・洞察語の増加が健康改善と関連することを示した。</p>
+<blockquote>Pennebaker, J. W., Mayne, T. J., &amp; Francis, M. E. (1997). Linguistic predictors of adaptive bereavement. <em>JPSP</em>, 72(4), 863–871. https://doi.org/10.1037/0022-3514.72.4.863</blockquote>
+
+<h4>先行研究E：Lieberman et al.（2007）── 感情のラベリングと生理反応</h4>
+<p>感情に名前をつける行為が扁桃体の活動を抑制し、皮膚コンダクタンス反応を減少させることを示した。言語による感情表現と生理反応が直結していることの神経科学的証拠。</p>
+<blockquote>Lieberman, M. D., et al. (2007). Putting feelings into words. <em>Psychological Science</em>, 18(5), 421–428. https://doi.org/10.1111/j.1467-9280.2007.01916.x</blockquote>
+
+<h3>本研究の位置づけ</h3>
+<ol>
+<li><b>辞書ベース解析の限界未解決</b>：LLMベースの解析システムの開発と妥当性検証は未着手</li>
+<li><b>日本語の言語的特殊性</b>：主語省略、終助詞、敬語体系への対応が不十分</li>
+<li><b>多面的妥当性検証の不足</b>：言語解析と生理指標を統合的に検証した研究は限定的</li>
+</ol>
+
+<h3>目的</h3>
+<p>本研究は、<b>(1) LIWCと同等のカテゴリ分析機能を持ちつつ、LLMベースの文脈理解・日本語対応・拡張機能を備えた新しい言語解析システム（KAISEKI）を開発</b>し、<b>(2) その構成概念妥当性を、質問紙データおよび生理データとの多面的関連分析により検証する</b>ことを目的とする。</p>
+
+<hr>
+<div class="page-break"></div>
+
+<h2>3. 実験パラダイム候補の比較検討</h2>
+
+<p>KAISEKIの構成概念妥当性を検証するためには、<b>「KAISEKIが算出した言語的特徴のスコアが、他の確立された心理指標と理論的に予測される方向で相関する」</b>ことを実証する必要がある。以下に3つの候補パラダイムを提案する。</p>
+
+<h3>候補1：筆記開示パラダイム（Expressive Writing）</h3>
+
+<p><b>概要</b>：ストレスフルな体験について深い感情・思考を記述する条件（感情筆記）と、前日の行動を事実のみ記述する条件（統制筆記）を参加者内デザインで実施。筆記中のEDA・心拍をBiopacで連続記録。</p>
+
+<p><b>選定理由</b>：(1) Pennebaker（1997）以降400以上の研究で使用された最も確立されたパラダイム、(2) LIWCが最も使用された文脈であり直接比較が可能、(3) 感情の時系列変化が理論的に予測されている、(4) 生理指標との同時計測が自然。</p>
+
+<table>
+<tr><th>検証対象</th><th>予測される相関</th><th>理論的根拠</th></tr>
+<tr><td>感情カテゴリ</td><td>感情筆記でネガティブ感情語↑、EDA↑</td><td>Lieberman et al. (2007)</td></tr>
+<tr><td>認知プロセスカテゴリ</td><td>セッション進行で因果語・洞察語↑</td><td>Pennebaker et al. (1997)</td></tr>
+<tr><td>自己言及カテゴリ</td><td>一人称代名詞と特性不安の正相関</td><td>Pennebaker (2011)</td></tr>
+<tr><td>文脈理解能力（独自）</td><td>J-LIWCで誤分類される語を正しく分類</td><td>LLMの文脈理解</td></tr>
+</table>
+
+<h3>候補2：感情喚起映像＋記述パラダイム（Emotion Elicitation &amp; Description）</h3>
+
+<p><b>概要</b>：Gross &amp; Levenson（1995）の標準化された感情喚起映像クリップ（喜び・悲しみ・怒り・恐怖・嫌悪・中性の6条件）を視聴させ、各映像の直後に感想を自由筆記。視聴中および筆記中のEDA・心拍を連続記録。</p>
+
+<p><b>選定理由</b>：(1) 特定の感情を誘発でき「正解ラベル」が得られる、(2) 感情検出精度を直接テスト可能、(3) 映像→生理反応→記述→KAISEKIスコアの三角測量が可能。</p>
+
+<table>
+<tr><th>検証対象</th><th>予測される相関</th><th>理論的根拠</th></tr>
+<tr><td>感情極性判定の正確性</td><td>喜び映像後→ポジティブ↑、悲しみ映像後→ネガティブ↑</td><td>Gross &amp; Levenson (1995)</td></tr>
+<tr><td>離散感情の弁別力</td><td>怒りと悲しみの記述が異なるスコアを示す</td><td>離散感情理論 (Ekman, 1992)</td></tr>
+<tr><td>文脈理解（独自）</td><td>「泣けるほど感動した」のポジティブ判定</td><td>LLMベース処理</td></tr>
+<tr><td>感情-生理対応</td><td>感情スコアとEDA変化量の相関</td><td>Lieberman et al. (2007)</td></tr>
+</table>
+
+<blockquote>Gross, J. J., &amp; Levenson, R. W. (1995). Emotion elicitation using films. <em>Cognition and Emotion</em>, 9(1), 87–108. https://doi.org/10.1080/02699939508408966</blockquote>
+
+<h3>候補3：性格と言語スタイルパラダイム（Personality &amp; Linguistic Style）</h3>
+
+<p><b>概要</b>：Pennebaker &amp; King（1999）の手法を日本語で再現。中性的なトピックで20分間の自由筆記を行わせ、Big Five等の質問紙を実施。KAISEKIとJ-LIWC2015の両方で同一テキストを解析し、相関パターンを比較。</p>
+
+<p><b>選定理由</b>：(1) J-LIWCとの直接比較が最も明確、(2) 構成概念妥当性の標準的手法、(3) 実施が最も簡素、(4) 性格-言語の関連は理論的に確立済み。</p>
+
+<table>
+<tr><th>検証対象</th><th>予測される相関</th><th>理論的根拠</th></tr>
+<tr><td>心理カテゴリ全般の妥当性</td><td>Big Fiveとの相関パターン再現</td><td>Pennebaker &amp; King (1999)</td></tr>
+<tr><td>J-LIWCとの弁別的妥当性</td><td>KAISEKIの方が強い相関</td><td>LLMベースの高精度解析</td></tr>
+<tr><td>日本語固有カテゴリ</td><td>終助詞・敬語とBig Fiveの相関</td><td>日本語の社会言語学的特性</td></tr>
+<tr><td>語彙多様性の妥当性</td><td>MTLDと開放性の正相関</td><td>認知的柔軟性と語彙使用</td></tr>
+</table>
+
+<h3>3候補の比較一覧</h3>
+<table>
+<tr><th>基準</th><th>候補1：筆記開示</th><th>候補2：感情喚起映像</th><th>候補3：性格と言語</th></tr>
+<tr><td>先行研究の蓄積</td><td>◎ 400研究以上</td><td>○ Gross &amp; Levenson基盤</td><td>◎ 直接再現</td></tr>
+<tr><td>J-LIWCとの比較</td><td>○ 可能</td><td>○ 可能</td><td>◎ 最も直接的</td></tr>
+<tr><td>生理指標との統合</td><td>◎ 自然</td><td>◎ 最も自然</td><td>△ 任意</td></tr>
+<tr><td>感情検出精度の検証</td><td>○ 間接的</td><td>◎ 直接的</td><td>△ 間接的</td></tr>
+<tr><td>実施の容易さ</td><td>○ 中程度</td><td>△ 映像選定必要</td><td>◎ 最も容易</td></tr>
+<tr><td>所要時間</td><td>約60分</td><td>約75分</td><td>約45分</td></tr>
+</table>
+
+<div class="tip"><b>推奨案</b>：候補1または候補3を主実験とし、候補2を補完実験として組み合わせることで、多面的な妥当性検証が可能。1つに絞る場合は候補3が最も安全。</div>
+
+<hr>
+<div class="page-break"></div>
+
+<h2>4. 研究課題・仮説</h2>
+<h3>研究課題（RQ）</h3>
+<ul>
+<li><b>RQ1</b>：KAISEKIの言語カテゴリスコアは、Big Five性格特性と理論的に予測される方向で相関するか（構成概念妥当性）</li>
+<li><b>RQ2</b>：KAISEKIはJ-LIWC2015と比較して、心理特性との相関強度が同等以上であるか</li>
+<li><b>RQ3</b>：KAISEKIの言語カテゴリスコアは、生理指標と関連するか</li>
+</ul>
+
+<h3>仮説（H）</h3>
+<ul>
+<li><b>H1</b>：KAISEKIの感情カテゴリスコアは、質問紙の感情状態（POMS）と正の相関を示す</li>
+<li><b>H2</b>：外向性とポジティブ感情語・社会語の正相関、神経症傾向とネガティブ感情語の正相関が日本語で再現される</li>
+<li><b>H3</b>：同一テキストに対し、KAISEKI各カテゴリとBig Fiveの相関係数はJ-LIWCと同等以上</li>
+<li><b>H4</b>：KAISEKIの感情スコアと筆記中のEDA・心拍変動は正の相関を示す</li>
+<li><b>H5</b>：文脈依存語の分類精度はKAISEKIがJ-LIWCより有意に高い</li>
+</ul>
+
+<hr>
+
+<h2>5. 研究デザイン</h2>
+<ul>
+<li><b>デザイン</b>：相関研究＋実験的比較（2システムの性能比較）</li>
+<li><b>統制</b>：実験環境（静穏な個室）、時間帯（10:00–17:00）、教示の標準化</li>
+<li><b>ブラインド</b>：分析者は参加者の質問紙結果を知らずにKAISEKI解析を実施</li>
+</ul>
+
+<h2>6. 参加者</h2>
+<ul>
+<li>対象：大学生（18歳以上）、日本語母語話者</li>
+<li>予定人数：n = 80（r = .30、α = .05、1−β = .80でG*Powerにより算出）</li>
+<li>謝礼：単位加点または図書カード500円</li>
+</ul>
+
+<h2>7. 手続き（約50–60分）</h2>
+<table>
+<tr><th>ステップ</th><th>内容</th><th>時間</th></tr>
+<tr><td>1</td><td>同意取得・実験説明</td><td>5分</td></tr>
+<tr><td>2</td><td>事前質問紙（属性、BFS、STAI、POMS）</td><td>15分</td></tr>
+<tr><td>3</td><td>Biopacセンサ装着・ベースライン測定</td><td>5分</td></tr>
+<tr><td>4</td><td>自由筆記セッション</td><td>20分</td></tr>
+<tr><td>5</td><td>事後質問紙</td><td>5分</td></tr>
+<tr><td>6</td><td>デブリーフィング・謝礼付与</td><td>5分</td></tr>
+</table>
+
+<h2>8. 分析計画</h2>
+<ul>
+<li><b>分析1</b>：KAISEKIカテゴリとBig Fiveのピアソン相関分析</li>
+<li><b>分析2</b>：KAISEKI vs. J-LIWCの相関係数差の検定（Steiger, 1980）</li>
+<li><b>分析3</b>：EDA/HR指標とKAISEKIスコアの相関・重回帰分析</li>
+<li>有意水準 α = .05、多重比較補正：Benjamini-Hochberg法</li>
+</ul>
+
+<h2>9. 倫理的配慮</h2>
+<ul>
+<li>任意参加・途中撤回可・不利益なし</li>
+<li>匿名化（ID付与）、データ暗号化、保管期間5年</li>
+<li>学内倫理審査委員会への申請予定</li>
+</ul>
+
+<hr>
+
+<h2>参考文献</h2>
+<p class="ref">Barrett, L. F. (2006). Are emotions natural kinds? <em>Perspectives on Psychological Science</em>, 1(1), 28–58.</p>
+<p class="ref">Faul, F., et al. (2007). G*Power 3. <em>Behavior Research Methods</em>, 39(2), 175–191.</p>
+<p class="ref">Gross, J. J., &amp; Levenson, R. W. (1995). Emotion elicitation using films. <em>Cognition and Emotion</em>, 9(1), 87–108.</p>
+<p class="ref">Igarashi, T., et al. (2022). Development of J-LIWC dictionary 2015. <em>Frontiers in Psychology</em>, 13, 841534.</p>
+<p class="ref">Lieberman, M. D., et al. (2007). Putting feelings into words. <em>Psychological Science</em>, 18(5), 421–428.</p>
+<p class="ref">McCrae, R. R., &amp; Costa, P. T. (2008). The five-factor theory of personality. In <em>Handbook of Personality</em> (3rd ed.).</p>
+<p class="ref">Pennebaker, J. W. (2011). <em>The Secret Life of Pronouns</em>. Bloomsbury.</p>
+<p class="ref">Pennebaker, J. W., et al. (2015). <em>LIWC2015</em>. University of Texas at Austin.</p>
+<p class="ref">Pennebaker, J. W., &amp; King, L. A. (1999). Linguistic styles. <em>JPSP</em>, 77(6), 1296–1312.</p>
+<p class="ref">Pennebaker, J. W., et al. (1997). Linguistic predictors of adaptive bereavement. <em>JPSP</em>, 72(4), 863–871.</p>
+<p class="ref">Tausczik, Y. R., &amp; Pennebaker, J. W. (2010). The psychological meaning of words. <em>JLSP</em>, 29(1), 24–54.</p>
+
+</body>
+</html>
