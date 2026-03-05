@@ -15,15 +15,15 @@
 
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background: #0a0a1a;
-            color: #e0e0e0
+            background: #f0f0f0;
+            color: #1a1a2e
         }
 
         .slide {
             width: 960px;
             height: 540px;
             margin: 20px auto;
-            background: linear-gradient(135deg, #0f1428 0%, #1a1f3a 100%);
+            background: #ffffff;
             border-radius: 12px;
             padding: 40px 50px;
             position: relative;
@@ -31,7 +31,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, .5)
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .12)
         }
 
         .slide::before {
@@ -41,7 +41,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #4facfe, #00f2fe, #43e97b)
+            background: linear-gradient(90deg, #2563eb, #06b6d4, #10b981)
         }
 
         @media print {
@@ -62,7 +62,7 @@
         h1 {
             font-size: 28px;
             font-weight: 900;
-            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            background: linear-gradient(90deg, #1e40af, #0891b2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 16px;
@@ -72,40 +72,34 @@
         h2 {
             font-size: 22px;
             font-weight: 700;
-            color: #4facfe;
+            color: #1e40af;
             margin-bottom: 12px;
             padding-bottom: 6px;
-            border-bottom: 2px solid rgba(79, 172, 254, .3)
+            border-bottom: 2px solid rgba(30, 64, 175, .2)
         }
 
         h3 {
             font-size: 16px;
             font-weight: 500;
-            color: #43e97b;
+            color: #059669;
             margin: 10px 0 6px
         }
 
         p {
             font-size: 13px;
             line-height: 1.7;
-            color: #c8d6e5
-        }
-
-        .subtitle {
-            font-size: 14px;
-            color: #8395a7;
-            margin-top: 8px
+            color: #374151
         }
 
         .big-quote {
             font-size: 18px;
-            color: #fff;
+            color: #1e293b;
             text-align: center;
             padding: 20px;
             margin: 20px 0;
-            background: rgba(79, 172, 254, .1);
+            background: #eff6ff;
             border-radius: 8px;
-            border-left: 4px solid #4facfe;
+            border-left: 4px solid #2563eb;
             line-height: 1.6
         }
 
@@ -117,33 +111,33 @@
         }
 
         th {
-            background: rgba(79, 172, 254, .2);
-            color: #4facfe;
+            background: #1e40af;
+            color: #fff;
             padding: 6px 8px;
             text-align: left;
             font-weight: 500;
-            border-bottom: 2px solid rgba(79, 172, 254, .3)
+            border-bottom: 2px solid #1e3a8a
         }
 
         td {
             padding: 5px 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, .08);
-            color: #c8d6e5
+            border-bottom: 1px solid #e5e7eb;
+            color: #374151
         }
 
-        tr:hover td {
-            background: rgba(79, 172, 254, .05)
+        tr:nth-child(even) td {
+            background: #f9fafb
         }
 
         .code-block {
-            background: #0a0e1a;
-            border: 1px solid rgba(79, 172, 254, .2);
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             border-radius: 6px;
             padding: 12px 16px;
             font-family: 'Courier New', monospace;
             font-size: 11px;
             line-height: 1.5;
-            color: #a0d0ff;
+            color: #1e293b;
             margin: 8px 0;
             white-space: pre
         }
@@ -158,29 +152,29 @@
         }
 
         .badge-blue {
-            background: rgba(79, 172, 254, .2);
-            color: #4facfe
+            background: #dbeafe;
+            color: #1e40af
         }
 
         .badge-green {
-            background: rgba(67, 233, 123, .2);
-            color: #43e97b
+            background: #d1fae5;
+            color: #065f46
         }
 
         .badge-red {
-            background: rgba(255, 107, 107, .2);
-            color: #ff6b6b
+            background: #fee2e2;
+            color: #991b1b
         }
 
         .badge-yellow {
-            background: rgba(255, 234, 167, .2);
-            color: #ffeaa7
+            background: #fef3c7;
+            color: #92400e
         }
 
         ul {
             font-size: 13px;
             line-height: 1.8;
-            color: #c8d6e5;
+            color: #374151;
             padding-left: 20px
         }
 
@@ -202,16 +196,12 @@
             bottom: 12px;
             right: 20px;
             font-size: 9px;
-            color: #636e72
+            color: #9ca3af
         }
 
         .highlight {
-            color: #4facfe;
+            color: #1e40af;
             font-weight: 700
-        }
-
-        .center {
-            text-align: center
         }
 
         .vs-box {
@@ -229,28 +219,39 @@
         }
 
         .vs-old {
-            background: rgba(255, 107, 107, .1);
-            border: 1px solid rgba(255, 107, 107, .3)
+            background: #fef2f2;
+            border: 1px solid #fecaca
         }
 
         .vs-new {
-            background: rgba(67, 233, 123, .1);
-            border: 1px solid rgba(67, 233, 123, .3)
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0
         }
 
         .vs-arrow {
             flex: 0;
             font-size: 20px;
-            color: #ffeaa7
+            color: #d97706
         }
 
         .rec {
-            background: rgba(67, 233, 123, .15);
-            border: 1px solid rgba(67, 233, 123, .3);
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
             padding: 8px 12px;
             border-radius: 6px;
             font-size: 12px;
-            margin: 8px 0
+            margin: 8px 0;
+            color: #065f46
+        }
+
+        .case-box {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin: 6px 0;
+            font-size: 11px;
+            color: #0c4a6e
         }
     </style>
 </head>
@@ -260,11 +261,11 @@
     <!-- Slide 1: Title -->
     <div class="slide" style="justify-content:center;align-items:center;text-align:center">
         <h1 style="font-size:32px;margin-bottom:20px">LIWC相当以上の<br>日本語言語解析システム<br>（KAISEKI）の開発</h1>
-        <p style="font-size:16px;color:#8395a7">── 構成概念妥当性の検証 ──</p>
-        <div style="margin-top:30px;color:#636e72;font-size:13px">
+        <p style="font-size:16px;color:#64748b">── 構成概念妥当性の検証 ──</p>
+        <div style="margin-top:30px;color:#9ca3af;font-size:13px">
             〔氏名〕<br>〔所属〕<br>〔年月日〕
         </div>
-        <div class="footer">1/15</div>
+        <div class="footer">1/17</div>
     </div>
 
     <!-- Slide 2: Research Question -->
@@ -276,10 +277,10 @@
         </div>
         <ul>
             <li>アメリカにはLIWCという有名なツールがある（20,000論文以上で使用）</li>
-            <li>日本語版（J-LIWC）もあるが、<span style="color:#ff6b6b">限界がある</span></li>
+            <li>日本語版（J-LIWC）もあるが、<span style="color:#dc2626">限界がある</span></li>
             <li>→ <span class="highlight">AIの力で限界を超えた新システムを作りたい</span></li>
         </ul>
-        <div class="footer">2/15</div>
+        <div class="footer">2/17</div>
     </div>
 
     <!-- Slide 3: What is LIWC -->
@@ -319,43 +320,80 @@
                 <td>社会的関心</td>
             </tr>
         </table>
-        <p style="font-size:10px;color:#636e72">Pennebaker, Boyd, Jordan, &amp; Blackburn (2015). LIWC2015. University
+        <p style="font-size:10px;color:#9ca3af">Pennebaker, Boyd, Jordan, &amp; Blackburn (2015). LIWC2015. University
             of Texas at Austin.</p>
-        <div class="footer">3/15</div>
+        <div class="footer">3/17</div>
     </div>
 
-    <!-- Slide 4: What LIWC reveals -->
+    <!-- Slide 4: LIWC Application 1 - Sexual Abuse -->
     <div class="slide">
-        <h2>LIWCで何がわかるのか</h2>
-        <p><span class="highlight">Pennebaker &amp; King (1999)</span>の発見：書いた文章のスタイルから<b>性格が予測できる</b></p>
+        <h2>LIWCの応用例①：筆記療法と心理的転機</h2>
+        <p><span class="highlight">Pulverman, Lorenz, &amp; Meston (2015)</span>：性的虐待歴のある女性の筆記療法をLIWCで解析</p>
+        <div class="case-box">
+            <b>研究デザイン</b>：性的虐待歴のある成人女性に表現的筆記（expressive writing）を実施。筆記テキストの言語変化をLIWCで追跡し、心理的転機との関連を検討。
+        </div>
+        <h3>LIWCで発見された言語変化と心理的改善の関連</h3>
         <table>
             <tr>
-                <th>性格特性</th>
-                <th>言語的特徴</th>
+                <th>言語変化</th>
+                <th>心理的改善</th>
             </tr>
             <tr>
-                <td>外向的な人</td>
-                <td>ポジティブ感情語・社会語が<span style="color:#43e97b">多い</span></td>
+                <td>一人称「I」の使用<span style="color:#dc2626">減少</span></td>
+                <td>抑うつ症状の改善、性機能の改善</td>
             </tr>
             <tr>
-                <td>神経症傾向が高い人</td>
-                <td>ネガティブ感情語・一人称代名詞が<span style="color:#ff6b6b">多い</span></td>
+                <td>ネガティブ感情語の<span style="color:#dc2626">減少</span></td>
+                <td>抑うつ・性的満足度の改善</td>
             </tr>
             <tr>
-                <td>開放的な人</td>
-                <td>語彙が豊富・長い文を書く</td>
-            </tr>
-            <tr>
-                <td>協調性が高い人</td>
-                <td>ポジティブ感情語が多い</td>
+                <td>ポジティブ感情語の<span style="color:#059669">増加</span></td>
+                <td>全体的な心理的回復</td>
             </tr>
         </table>
-        <p style="margin-top:10px">→ 言語スタイルは<b>性格の独立した指標</b>として機能する</p>
-        <p style="font-size:10px;color:#636e72">Pennebaker &amp; King (1999). JPSP, 77(6), 1296–1312.</p>
-        <div class="footer">4/15</div>
+        <p style="margin-top:6px">→ <b>言語特徴の変化が心理的転機の「先行指標」</b>として機能することを実証</p>
+        <p style="font-size:10px;color:#9ca3af">Pulverman, C. S., Lorenz, T. A., &amp; Meston, C. M. (2015).
+            <em>Psychological Trauma</em>, 7(1), 50–57.</p>
+        <div class="footer">4/17</div>
     </div>
 
-    <!-- Slide 5: J-LIWC -->
+    <!-- Slide 5: LIWC Application 2 - COVID-19 -->
+    <div class="slide">
+        <h2>LIWCの応用例②：COVID-19医療従事者の心理的適応</h2>
+        <p><span class="highlight">Panzeri et al. (2021)</span>：パンデミック下の医療従事者の筆記をLIWCで解析</p>
+        <div class="case-box">
+            <b>研究デザイン</b>：COVID-19パンデミック時の医療従事者にexpressive writingを実施。言語的特徴がPTSD・うつ症状の変化を予測するか検証。
+        </div>
+        <h3>LIWCで発見された言語的予測因子</h3>
+        <table>
+            <tr>
+                <th>言語的予測因子</th>
+                <th>予測される心理的変化</th>
+            </tr>
+            <tr>
+                <td>認知的精緻化（因果語・洞察語）の<span style="color:#059669">増加</span></td>
+                <td>PTSD症状の改善</td>
+            </tr>
+            <tr>
+                <td>感情的精緻化（感情語の組織的使用）</td>
+                <td>うつ症状の改善</td>
+            </tr>
+            <tr>
+                <td>自己没入的処理（一人称の<span style="color:#dc2626">過剰使用</span>）</td>
+                <td>うつ症状の悪化を予測</td>
+            </tr>
+            <tr>
+                <td>生命への脅威の知覚（死関連語）</td>
+                <td>PTSD症状の高さと関連</td>
+            </tr>
+        </table>
+        <p style="margin-top:6px">→ <b>言語解析により「誰が回復し、誰が悪化するか」を早期に予測可能</b></p>
+        <p style="font-size:10px;color:#9ca3af">Panzeri, A., et al. (2021). <em>International Journal of Environmental
+                Research and Public Health</em>, 18(24), 13302.</p>
+        <div class="footer">5/17</div>
+    </div>
+
+    <!-- Slide 6: J-LIWC -->
     <div class="slide">
         <h2>J-LIWC2015（日本語版）</h2>
         <p><span class="highlight">五十嵐・奥田・笹原（2022）</span> が開発 ─ <em>Frontiers in Psychology</em></p>
@@ -369,49 +407,49 @@
             <span class="badge badge-green">✓ 重要な業績</span>
             <span class="badge badge-red">✗ 辞書ベースの限界は未解消</span>
         </div>
-        <p style="font-size:10px;color:#636e72;margin-top:10px">Igarashi, T., et al. (2022). Frontiers in Psychology,
+        <p style="font-size:10px;color:#9ca3af;margin-top:10px">Igarashi, T., et al. (2022). Frontiers in Psychology,
             13, 841534.</p>
-        <div class="footer">5/15</div>
+        <div class="footer">6/17</div>
     </div>
 
-    <!-- Slide 6: Limitations -->
+    <!-- Slide 7: Limitations -->
     <div class="slide">
         <h2>LIWCとJ-LIWCの限界</h2>
         <div class="vs-box">
             <div class="vs-old">
-                <b style="color:#ff6b6b">入力：</b>「この映画、<b>やばい</b>くらい感動した」<br><br>
-                J-LIWC：「やばい」→ <span style="color:#ff6b6b">ネガティブ ❌</span><br>
+                <b style="color:#dc2626">入力：</b>「この映画、<b>やばい</b>くらい感動した」<br><br>
+                J-LIWC：「やばい」→ <span style="color:#dc2626">ネガティブ ❌</span><br>
                 現実：ポジティブな意味 ✓
             </div>
             <div class="vs-old">
-                <b style="color:#ff6b6b">入力：</b>「<b>全然</b>大丈夫です」<br><br>
-                J-LIWC：「全然」→ <span style="color:#ff6b6b">否定語 ❌</span><br>
+                <b style="color:#dc2626">入力：</b>「<b>全然</b>大丈夫です」<br><br>
+                J-LIWC：「全然」→ <span style="color:#dc2626">否定語 ❌</span><br>
                 現実：肯定の意味 ✓
             </div>
         </div>
         <h3>根本的な問題</h3>
         <ul>
-            <li><span style="color:#ff6b6b">文脈を読めない</span>（辞書で1語ずつ調べるだけ）</li>
-            <li><span style="color:#ff6b6b">新語・スラングに対応できない</span>（辞書更新が手動）</li>
-            <li><span style="color:#ff6b6b">日本語特有の問題</span>：主語省略、終助詞、敬語の解析が不十分</li>
+            <li><span style="color:#dc2626">文脈を読めない</span>（辞書で1語ずつ調べるだけ）</li>
+            <li><span style="color:#dc2626">新語・スラングに対応できない</span>（辞書更新が手動）</li>
+            <li><span style="color:#dc2626">日本語特有の問題</span>：主語省略、終助詞、敬語の解析が不十分（※次スライドで詳述）</li>
         </ul>
-        <p style="font-size:10px;color:#636e72">Tausczik &amp; Pennebaker (2010). JLSP, 29(1), 24–54.</p>
-        <div class="footer">6/15</div>
+        <p style="font-size:10px;color:#9ca3af">Tausczik &amp; Pennebaker (2010). JLSP, 29(1), 24–54.</p>
+        <div class="footer">7/17</div>
     </div>
 
-    <!-- Slide 7: KAISEKI overview -->
+    <!-- Slide 8: KAISEKI overview -->
     <div class="slide">
         <h2>KAISEKIとは</h2>
         <div class="vs-box">
             <div class="vs-old">
                 <b>J-LIWC（従来型）</b><br>
-                テキスト → 単語分割 → <span style="color:#ff6b6b">辞書照合</span> → 集計<br>
+                テキスト → 単語分割 → <span style="color:#dc2626">辞書照合</span> → 集計<br>
                 ※ 1語ずつ辞書を引く<br>※ 前後の文は見ない
             </div>
             <div class="vs-arrow">→</div>
             <div class="vs-new">
                 <b>KAISEKI（新型）</b><br>
-                テキスト → <span style="color:#43e97b">AIが文脈を読む</span> → 判定<br>
+                テキスト → <span style="color:#059669">AIが文脈を読む</span> → 判定<br>
                 ※ 文章全体を理解<br>※ 皮肉・比喩も検出
             </div>
         </div>
@@ -426,10 +464,10 @@
                 <span class="badge badge-blue">レイヤー4</span> 意味空間分析（<b>独自</b>）
             </div>
         </div>
-        <div class="footer">7/15</div>
+        <div class="footer">8/17</div>
     </div>
 
-    <!-- Slide 8: Differentiation -->
+    <!-- Slide 9: Differentiation -->
     <div class="slide">
         <h2>KAISEKIの差別化</h2>
         <table>
@@ -445,44 +483,44 @@
             </tr>
             <tr>
                 <td><b>文脈理解</b></td>
-                <td style="color:#ff6b6b">✗</td>
-                <td style="color:#43e97b"><b>○（AI）</b></td>
+                <td style="color:#dc2626">✗</td>
+                <td style="color:#059669"><b>○（AI）</b></td>
             </tr>
             <tr>
                 <td><b>皮肉・比喩検出</b></td>
-                <td style="color:#ff6b6b">✗</td>
-                <td style="color:#43e97b"><b>○</b></td>
+                <td style="color:#dc2626">✗</td>
+                <td style="color:#059669"><b>○</b></td>
             </tr>
             <tr>
                 <td><b>辞書自動更新</b></td>
-                <td style="color:#ff6b6b">✗</td>
-                <td style="color:#43e97b"><b>○</b></td>
+                <td style="color:#dc2626">✗</td>
+                <td style="color:#059669"><b>○</b></td>
             </tr>
             <tr>
                 <td><b>語彙多様性（MTLD）</b></td>
-                <td style="color:#ff6b6b">✗</td>
-                <td style="color:#43e97b"><b>○</b></td>
+                <td style="color:#dc2626">✗</td>
+                <td style="color:#059669"><b>○</b></td>
             </tr>
             <tr>
                 <td><b>構文複雑性</b></td>
-                <td style="color:#ff6b6b">✗</td>
-                <td style="color:#43e97b"><b>○</b></td>
+                <td style="color:#dc2626">✗</td>
+                <td style="color:#059669"><b>○</b></td>
             </tr>
             <tr>
                 <td><b>意味的類似度</b></td>
-                <td style="color:#ff6b6b">✗</td>
-                <td style="color:#43e97b"><b>○</b></td>
+                <td style="color:#dc2626">✗</td>
+                <td style="color:#059669"><b>○</b></td>
             </tr>
             <tr>
                 <td>コスト</td>
                 <td>有料</td>
-                <td style="color:#43e97b">無料</td>
+                <td style="color:#059669">無料</td>
             </tr>
         </table>
-        <div class="footer">8/15</div>
+        <div class="footer">9/17</div>
     </div>
 
-    <!-- Slide 9: Why needed -->
+    <!-- Slide 10: Why needed -->
     <div class="slide">
         <h2>なぜこの研究が必要か</h2>
         <ul style="font-size:14px;line-height:2.2">
@@ -490,12 +528,11 @@
                     class="highlight">未着手</span></li>
             <li><b>日本語研究への貢献</b>：主語省略・敬語・文脈依存性の高い日本語に<span class="highlight">最適化されたツールが不在</span></li>
             <li><b>実践的価値</b>：臨床心理（筆記療法）、教育（レポート分析）、社会心理学（SNS分析）など<span class="highlight">幅広い応用</span></li>
-            <li><b>先生の指摘</b>：「LIWCと同等以上の言語解析ができるのではないか」</li>
         </ul>
-        <div class="footer">9/15</div>
+        <div class="footer">10/17</div>
     </div>
 
-    <!-- Slide 10: Construct Validity -->
+    <!-- Slide 11: Construct Validity -->
     <div class="slide">
         <h2>構成概念妥当性とは</h2>
         <div class="big-quote" style="font-size:15px">
@@ -509,10 +546,10 @@
             体も緊張していた（汗↑、心拍↑） ───┘
         </div>
         <p style="text-align:center;margin-top:10px"><b>三角測量（トライアンギュレーション）</b>：<br>言語データ × 心理データ × 生理データの一致で検証</p>
-        <div class="footer">10/15</div>
+        <div class="footer">11/17</div>
     </div>
 
-    <!-- Slide 11: Three Paradigms -->
+    <!-- Slide 12: Three Paradigms -->
     <div class="slide">
         <h2>実験パラダイム候補（3つ）</h2>
         <table>
@@ -520,7 +557,7 @@
                 <th></th>
                 <th>候補1：筆記開示</th>
                 <th>候補2：感情喚起映像</th>
-                <th>候補3：性格と言語 ★</th>
+                <th>候補3：性格と言語</th>
             </tr>
             <tr>
                 <td><b>内容</b></td>
@@ -553,11 +590,10 @@
                 <td><b>◎ 最も容易</b></td>
             </tr>
         </table>
-        <div class="rec">★ 推奨：候補3が最も安全（先行研究の直接再現＋J-LIWC比較が明確＋実施が簡素）</div>
-        <div class="footer">11/15</div>
+        <div class="footer">12/17</div>
     </div>
 
-    <!-- Slide 12: Design -->
+    <!-- Slide 13: Design -->
     <div class="slide">
         <h2>実験デザイン</h2>
         <div class="code-block" style="font-size:12px">
@@ -578,28 +614,28 @@
             どちらが性格検査の結果とより強く相関するか？
         </div>
         <p style="text-align:center">所要時間：約<b>50–60分</b></p>
-        <div class="footer">12/15</div>
+        <div class="footer">13/17</div>
     </div>
 
-    <!-- Slide 13: Hypotheses -->
+    <!-- Slide 14: Hypotheses -->
     <div class="slide">
         <h2>仮説</h2>
         <ul style="font-size:13px;line-height:2.0">
-            <li><b>H1（収束的妥当性）</b>：KAISEKIの感情カテゴリは質問紙の感情状態と<span style="color:#43e97b">正の相関</span></li>
+            <li><b>H1（収束的妥当性）</b>：KAISEKIの感情カテゴリは質問紙の感情状態と<span style="color:#059669">正の相関</span></li>
             <li><b>H2（性格-言語対応）</b>：外向性→ポジティブ語↑、神経症傾向→ネガティブ語↑の英語圏パターンが<span class="highlight">日本語で再現</span></li>
-            <li><b>H3（J-LIWC比較）</b>：KAISEKIの相関係数はJ-LIWCと<span style="color:#43e97b">同等以上</span></li>
-            <li><b>H4（生理-言語対応）</b>：感情スコアとEDA・心拍変動は<span style="color:#43e97b">正の相関</span></li>
-            <li><b>H5（文脈優位性）</b>：文脈依存語の分類精度はKAISEKIが<span style="color:#43e97b">J-LIWCより高い</span></li>
+            <li><b>H3（J-LIWC比較）</b>：KAISEKIの相関係数はJ-LIWCと<span style="color:#059669">同等以上</span></li>
+            <li><b>H4（生理-言語対応）</b>：感情スコアとEDA・心拍変動は<span style="color:#059669">正の相関</span></li>
+            <li><b>H5（文脈優位性）</b>：文脈依存語の分類精度はKAISEKIが<span style="color:#059669">J-LIWCより高い</span></li>
         </ul>
-        <div class="footer">13/15</div>
+        <div class="footer">14/17</div>
     </div>
 
-    <!-- Slide 14: Anticipated Questions -->
+    <!-- Slide 15: Anticipated Questions -->
     <div class="slide">
         <h2>想定される質問と回答</h2>
         <h3>Q1：「J-LIWC（五十嵐, 2022）で十分では？」</h3>
         <ul style="font-size:11px">
-            <li>J-LIWCは辞書ベース → <span style="color:#ff6b6b">文脈を読めない</span>（Tausczik &amp; Pennebaker, 2010も限界を認定）</li>
+            <li>J-LIWCは辞書ベース → <span style="color:#dc2626">文脈を読めない</span>（Tausczik &amp; Pennebaker, 2010も限界を認定）</li>
             <li>「やばい」「全然」等の文脈依存語を正しく分類できない</li>
             <li>KAISEKIはJ-LIWCと<b>互換性を持ちつつ、文脈理解で超える</b>設計</li>
         </ul>
@@ -609,10 +645,10 @@
             <li>構成概念妥当性を検証 → AIの判定が心理学的に妥当であることを実証</li>
             <li>Pennebaker &amp; King (1999) と同じ相関パターンが再現されれば解釈可能性の科学的証拠</li>
         </ul>
-        <div class="footer">14/15</div>
+        <div class="footer">15/17</div>
     </div>
 
-    <!-- Slide 15: Schedule -->
+    <!-- Slide 16: Schedule -->
     <div class="slide">
         <h2>今後のスケジュール</h2>
         <table>
@@ -647,11 +683,18 @@
                 Igarashi et al. (2022) <em>Frontiers in Psychology</em>, 13, 841534.<br>
                 Pennebaker &amp; King (1999) <em>JPSP</em>, 77(6), 1296–1312.<br>
                 Tausczik &amp; Pennebaker (2010) <em>JLSP</em>, 29(1), 24–54.<br>
-                Lieberman et al. (2007) <em>Psychological Science</em>, 18(5), 421–428.<br>
-                Gross &amp; Levenson (1995) <em>Cognition and Emotion</em>, 9(1), 87–108.
+                Pulverman et al. (2015) <em>Psychological Trauma</em>, 7(1), 50–57.<br>
+                Panzeri et al. (2021) <em>Int. J. Environ. Res. Public Health</em>, 18(24), 13302.
             </p>
         </div>
-        <div class="footer">15/15</div>
+        <div class="footer">16/17</div>
+    </div>
+
+    <!-- Slide 17: Thank You -->
+    <div class="slide" style="justify-content:center;align-items:center;text-align:center">
+        <h1 style="font-size:36px">ご清聴ありがとうございました</h1>
+        <p style="font-size:16px;color:#64748b;margin-top:20px">ご質問・ご意見をお待ちしています</p>
+        <div class="footer">17/17</div>
     </div>
 
 </body>
